@@ -1,0 +1,69 @@
+
+extends layout
+
+block content
+
+  // WRAPPER
+  #dashboardContent.contentBody
+
+    // STUB TABLES
+    #stubResults.infoBox
+      #contentTitle.infoBoxTitle
+
+      #contentData.infoBoxContent
+
+    // /STUB TABLES
+
+  // /WRAPPER
+
+  // WRAPPER
+  #stubDetail.popup
+    div.closebtn(onclick='closeDetail(".popup","#stubResults")') &times;
+    .content
+      #thisStubName
+        strong Name: 
+        <span id="stubName"></span>
+
+      #thisStubDetail
+        strong Path: 
+        <span id="stubPath"></span>
+
+      #stubResponse
+          strong Response:
+          .notes
+      
+  // /WRAPPER
+
+  // WRAPPER
+  #newStub.popup
+    div.closebtn(onclick='closeForm(".popup")') &times;
+    .content
+      form(id="newStubForm")
+        fieldset
+          div.formFields
+            div
+              label(for="name") Stub Name: <br />
+                input#newName(type="text", name="name")
+            div
+              label(for="category") Category: <br />
+                input#newCategory(type="text", name="category")
+            div
+              label(for="path") Path: <br />
+                input#newPath(type="text", name="path")
+            div
+              label(for="notes") Notes: <br />
+                textarea#newNotes(name="notes")
+            div
+              label(for="code") Response Code: <br />
+                input#newCode(type="text", size="3", name="code")
+            div
+              label(for="response") Response Body: <br />
+                textarea#newResponse(rows="4", cols="50", name="response")
+            div
+              button.formButtons(type='submit', onClick="addNewStub(event)") Add Stub
+      
+  // /WRAPPER
+  <script type="text/javascript">
+      | var currentCategory = "#{category}";
+  </script>
+  script(src='/javascripts/stubs.js')
